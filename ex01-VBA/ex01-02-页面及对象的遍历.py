@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Mar 01 17:24:36 2014
 
-@author: 管理员
-"""
 
 #%% 导入相关库
 import win32com.client
