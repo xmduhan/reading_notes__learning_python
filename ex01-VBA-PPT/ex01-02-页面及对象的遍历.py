@@ -11,7 +11,7 @@ import win32com.client
 #%% 新建一个测试用的ppt
 application = win32com.client.Dispatch("PowerPoint.Application")
 application.Visible = True
-presentation = Application.Presentations.Add()
+presentation = application.Presentations.Add()
 presentation.Slides.Add(1,1)
 presentation.Slides.Add(2,2)
 presentation.Slides.Add(3,3)
