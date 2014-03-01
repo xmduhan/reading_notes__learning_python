@@ -31,3 +31,10 @@ def fun():
 fun()
 print 'x =' ,x
 
+#%% 
+x = 1
+def fun():
+    #import ch17-01      # 由于那个该死的"-"导致无法使用import语句导入模块 
+    import sys
+    sys.modules['ch17-01']
+
