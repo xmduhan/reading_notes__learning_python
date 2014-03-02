@@ -8,9 +8,15 @@
 “Microsoft PowerPoint 1x.0 Object Library”
 “Microsoft Excel 1x.0 Object Library”
 “Microsoft Word 1x.0 Object Library”
-3、在“...\Python27\Lib\site-packages\win32com\gen_py”中会生成对应的python文件，对其进行改名例如“Microsoft Office 1x.0 Object Library” ， 可以改名为msof。
+3、在“...\Python27\Lib\site-packages\win32com\gen_py”中会生成对应的python文件
+，对其进行改名例如“Microsoft Office 1x.0 Object Library” ， 可以改名为msof。
 4、然后在Python程序中使用以下方法引用
 from win32com.gen_py import msof
+
+注意：生成python的VB常量库后，不仅是可以使用VB的常量，com对象的类型识别也变得可能，可以
+通过dir展示其所有的方法，但是属性还是只能查VBA参考，但是有些通过下标[]访问对象的方法会失效，
+如slide = presentation.Slides[1] 不能再使用
+
 '''
 
 #%% 导入相关库

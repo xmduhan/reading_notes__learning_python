@@ -20,9 +20,11 @@ len(slides)
 for page in slides : print(page)
 
 #%% 提取每1业作为变量
-page1 = slides[0]
-page2 = slides[1]
+page1 = slides[0]      # 在导入类型库常量后，这就不能再用了 error
+page2 = slides[1]      # 但可以使用slides.Item(1..n)
 page3 = slides[2]
+
+
 
 #%% 查看页面中的对象个数
 shapes1 = page1.Shapes
