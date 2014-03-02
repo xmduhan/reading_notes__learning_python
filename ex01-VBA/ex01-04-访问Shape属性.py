@@ -30,13 +30,16 @@ slides = presentation.Slides
 #%% 打印出每一个对象(shape)的属性
 for (i,slide) in enumerate(slides):
     print 'page' + str(i) + ':'
-    for (j,shape) in enumerate(slide.Shapes):
-        print ' shape%d:%s,%s,(%f,%f)(%f,%f)' % (j,shapeType[shape.Type],\
-            autoShapeType[shape.AutoShapeType],shape.Left,shape.Top,\
-            shape.Width,shape.Height)
+    for (j,s) in enumerate(slide.Shapes):
+        text = s.TextFrame.TextRange.Text if s.TextFrame.HasText else '';
+        print ' shape%d:"%s",%s,%s,(%f,%f)(%f,%f)%s' % (j,s.Name,\
+            shapeType[s.Type],autoShapeType[s.AutoShapeType],\
+            s.Left,s.Top,s.Width,s.Height,text)
 
 #%% 对属性进行修改            
 for (i,slide) in enumerate(slides):
-    for (j,shape) in enumerate(slide.Shapes):
-        shape.Left = 0
-        shape.Top = 0
+    for (j,s) in enumerate(slide.Shapes):
+            s.Left = 0
+            s.Top = 0
+        
+ 

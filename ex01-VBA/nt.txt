@@ -1,0 +1,5 @@
+1、创建对象
+ shape = Slide.Shapes.AddShape(msoShapeRectangle, x, y, w, h)
+2、设置背景颜色
+3、设置字体
+4、引用excel表格的图标对象(ole)
