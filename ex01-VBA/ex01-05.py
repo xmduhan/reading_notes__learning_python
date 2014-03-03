@@ -34,16 +34,29 @@ pageHeight = 540
 titleBarWidth = (pageWidth - border * 3)/2
 titleBarHeight = 30
 titleFrameHeight = 60
+chartWidth = (pageWidth - border * 3)/2
 chartHeight = (pageHeight - titleFrameHeight - titleBarHeight * 2 - border * 5)/2
 titleBarBeginV1 = border
 titleBarBeginV2 = border * 2 + titleBarWidth
 titleBarBeginH1 = titleFrameHeight + border
-titleBarBeginH2 = border * 3 + chartHeight + titleBarHeight
-#%%
-   
+titleBarBeginH2 = titleFrameHeight + titleBarHeight + chartHeight + border * 3  
+
+chartBeginV1 = border
+chartBeginV2 = border * 2 + titleBarWidth
+chartBeginH1 = titleFrameHeight + titleBarHeight + border * 2
+chartBeginH2 = titleFrameHeight + titleBarHeight * 2 + chartHeight + border * 4  
+
+
+#%%   
 shapes.AddShape(msoShapeRectangle, titleBarBeginV1, titleBarBeginH1, titleBarWidth, titleBarHeight)
 shapes.AddShape(msoShapeRectangle, titleBarBeginV2, titleBarBeginH1, titleBarWidth, titleBarHeight)
 shapes.AddShape(msoShapeRectangle, titleBarBeginV1, titleBarBeginH2, titleBarWidth, titleBarHeight)
 shapes.AddShape(msoShapeRectangle, titleBarBeginV2, titleBarBeginH2, titleBarWidth, titleBarHeight)
+shapes.AddShape(msoShapeRectangle, chartBeginV1, chartBeginH1, chartWidth, chartHeight)
+shapes.AddShape(msoShapeRectangle, chartBeginV2, chartBeginH1, chartWidth, chartHeight)
+shapes.AddShape(msoShapeRectangle, chartBeginV1, chartBeginH2, chartWidth, chartHeight)
+shapes.AddShape(msoShapeRectangle, chartBeginV2, chartBeginH2, chartWidth, chartHeight)
+
 #%%
+shapes.AddShape(msoShapeRectangle,0,0,10,185)
 shapes.AddShape(msoShapeRectangle,0,0,10,540)
