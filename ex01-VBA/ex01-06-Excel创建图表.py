@@ -38,6 +38,24 @@ chart = workbook.Charts.Add()
 chart.ChartType = xlLine
 chart.SetSourceData(sheet1.Range(rangeName))
 
+# 遍历所有系列
+seriesCollection = chart.SeriesCollection()
+seriesCollection.Count   
+for i in seriesCollection:
+    print(i)
+
+#%%
+series = seriesCollection.Item(1)
+series.Name = "Fred"
+series.Interior.ColorIndex = 8 
+ 
+#%%
+
+series.Values = "=Sheet1!Y_Range"
+series.XValues = Array(1, 2, 3)
+
+
+# 参考http://peltiertech.com/Excel/ChartsHowTo/QuickChartVBA.html        
 #%% 图表类型说明
 ChartType = {'xlLine':'折线图',
 'xlLineMarkersStacked':'堆积数据点折线图',
