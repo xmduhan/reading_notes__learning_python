@@ -44,15 +44,7 @@ seriesCollection.Count
 for i in seriesCollection:
     print(i)
 
-#%%
-series = seriesCollection.Item(1)
-series.Name = "Fred"
-series.Interior.ColorIndex = 8 
- 
-#%%
 
-series.Values = "=Sheet1!Y_Range"
-series.XValues = Array(1, 2, 3)
 
 
 # 参考http://peltiertech.com/Excel/ChartsHowTo/QuickChartVBA.html        

@@ -11,9 +11,17 @@ from win32com.gen_py import msof,mspp,msxl
 #%% 打开excel程序
 application = win32com.client.Dispatch('Excel.Application')
 application.Visible = True
+application.DisplayAlerts = False
+
+#%% 创建一个工作簿 
+workbook = application.Workbooks.Add()
+#%% 保存数据退出
+filename = r'c:\sample1.xls'
+workbook.SaveAs(filename)  
+workbook.Close()  
 
 #%% 打开一个工作簿
-workbook = application.Workbooks.Open(r'c:\sample1.xls')
+workbook = application.Workbooks.Open(filename)
 
 #%% 遍历每一个工作表
 sheets = workbook.Sheets 
@@ -39,7 +47,7 @@ sheet1.Cells(3,2).Interior.ColorIndex = 15 #by ColorIndex
 sheet1.Cells(4,3).Font.Bold = True  
 sheet1.Cells(3,3).Font.Color = 0xFF 
 
-#%% 保存数据退出
+#%% 保存退出
 workbook.Save()  
 workbook.Close()  
 application.Quit()  

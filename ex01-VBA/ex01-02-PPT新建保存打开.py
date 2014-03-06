@@ -7,6 +7,7 @@ import win32com.client, sys
 #%% 启动PowerPoint
 application = win32com.client.Dispatch("PowerPoint.Application")
 application.Visible = True
+application.DisplayAlerts = False
 
 #%% 新增一个PPT文件,相当于ppt中的按了"新建"菜单
 presentation = application.Presentations.Add()
