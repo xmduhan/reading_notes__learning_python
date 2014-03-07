@@ -37,6 +37,7 @@ datafile.save()
 #%% 使用VBA将其数据文件打开
 application = win32com.client.Dispatch('Excel.Application')
 application.Visible = True
+application.DisplayAlerts = False
 workbook = application.Workbooks.Open(filename)
 sheets = workbook.Sheets 
 sheet = sheets.Item(sheetname)
@@ -44,9 +45,27 @@ sheet = sheets.Item(sheetname)
 #%% 获取数据范围
 nRow = sheet.UsedRange.Rows.Count  
 nCol = sheet.UsedRange.Columns.Count
-#%% 添加图表 
-chart = workbook.Charts.Add()
+# 为嵌入式图表计算
+chartObjectXCells = 10
+chartObjectYCells = 25
+chartObjectLeft = sheet.Cells(2,nCol+2).Left
+chartObjectTop = sheet.Cells(2,1).Top
+chartObjectWidth = sheet.Cells(2,nCol+2+chartObjectXCells).Left - chartObjectLeft
+chartObjectHeight = sheet.Cells(2+chartObjectYCells,1).Top - chartObjectTop
+
+
+#%% 使用独立式图表还是嵌入式图表 
+separatedChart = False
+if separatedChart :
+    chart = workbook.Charts.Add()
+else :
+    chartObject = sheet.ChartObjects().Add(
+        chartObjectLeft,chartObjectTop,chartObjectWidth,chartObjectHeight)
+    chart = chartObject.Chart
+    
+#%% 设置图表类型
 chart.ChartType = xlLine
+
 #%% 增加系列
 seriesCollection = chart.SeriesCollection()
 for i in range(2,nCol+1):
@@ -62,6 +81,17 @@ seriesCollection.Item(1).XValues = sheet.Range(xRangeName)
 chart.ChartArea.Interior.ColorIndex = 0
 chart.PlotArea.Interior.ColorIndex = 0
 
+#%% 也可以使用 
+chart.ChartArea.Interior.Color = 0xffffff
+
+#%% 设置图表边框的颜色
+chart.ChartArea.Border.ColorIndex = xlColorIndexNone
+#chart.ChartArea.Border.ColorIndex = 5
+#%% 设置绘图区边框
+chart.PlotArea.Border.ColorIndex = xlColorIndexNone
+#chart.PlotArea.Border.ColorIndex = 1
+
+
 #%% 去掉图例
 chart.HasLegend = False
 #%% 回复图例
@@ -75,9 +105,10 @@ xlLegendPositionTop
 xlLegendPositionBottom,
 xlLegendPositionLeft 
 '''
-#%% 自定义图例位置
-chart.Legend.Top = 0
-chart.Legend.Left = 0
+# 也可以指定位置
+#chart.Legend.Top = 0
+#chart.Legend.Left = 0
+
 #%% 是否显示坐标轴 (x,y)
 chart.HasAxis = (True,True)
 #%% 是否显示数据表
@@ -90,8 +121,13 @@ chart.Axes().Item(2).HasMajorGridlines = False
 chart.Axes().Item(1).HasMinorGridlines = False
 chart.Axes().Item(2).HasMinorGridlines = False
 
+#%% 调整绘图区的位置
+chartPlotAreaHeight = chart.PlotArea.Top+chart.PlotArea.Height
+chart.PlotArea.Top = 0
+chart.PlotArea.Height += chartPlotAreaHeight
+
 #%% 另存文件
-filename = r'c:\sample2.xls'
+filename = r'c:\test2.xls'
 workbook.SaveAs(filename)  
 workbook.Close()  
 application.Quit()
