@@ -19,10 +19,12 @@ presentation.Slides.Add(3,3)
 #%% 保存到文件
 filename = r'c:\1.ppt'
 presentation.SaveAs(filename)
+presentation.Save()
 presentation.Close()
 
 #%% 从一个路径打开文件
 presentation = application.Presentations.Open(filename)
 
 
-
+#%%
+application.Quit()
