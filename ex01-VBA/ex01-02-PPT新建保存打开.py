@@ -26,5 +26,3 @@ presentation.Close()
 presentation = application.Presentations.Open(filename)
 
 
-#%%
-application.Quit()
