@@ -27,7 +27,7 @@ def cellName(nRow,nCol):
 filename = r'c:\test1.xls'
 sheetname = 'sheet1'
 data = DataFrame(
-    {'a':range(10), 'b':range(10,20), 'c':range(20,30)},
+    {'a':range(10), 'b':range(10,20), 'c':range(20,30),'d':range(30,40)},
     index=list(uppercase)[:10]
 )
 datafile = ExcelWriter(filename)
@@ -125,6 +125,9 @@ chart.Axes().Item(2).HasMinorGridlines = False
 chartPlotAreaHeight = chart.PlotArea.Top+chart.PlotArea.Height
 chart.PlotArea.Top = 0
 chart.PlotArea.Height += chartPlotAreaHeight
+
+#%%
+print('stop!!!!!')
 
 #%% 另存文件
 filename = r'c:\test2.xls'
